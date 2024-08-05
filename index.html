@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Structure - Decentralized Social Media for Professionals</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f0f4f8, #c0e0ff);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 1200px;
+            margin: 0 auto;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        header {
+            background-color: #004d99;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .project-info {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .project-info p {
+            margin: 5px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .team-section {
+            margin-bottom: 30px;
+        }
+
+        .team-role {
+            font-size: 22px;
+            font-weight: bold;
+            color: #004d99;
+            margin: 20px 0;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .team-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .team-card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-card:hover {
+            transform: perspective(1000px) rotateX(10deg) rotateY(10deg);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-card h3 {
+            margin: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: #004d99;
+        }
+
+        .team-card p {
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .team-card.frontend {
+            border-left: 5px solid #28a745;
+        }
+
+        .team-card.backend {
+            border-left: 5px solid #dc3545;
+        }
+
+        .team-card.lead {
+            border-left: 5px solid #004d99;
+        }
+
+        .team-card.supervisor {
+            border-left: 5px solid #17a2b8;
+        }
+
+        .team-card .role {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .team-card .name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #004d99;
+        }
+
+        .team-card .details {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .popup-content h2 {
+            color: #004d99;
+        }
+
+        .popup-content p {
+            margin: 10px 0;
+        }
+
+        .popup-close {
+            background: #dc3545;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .popup-close:hover {
+            background: #c82333;
+        }
+
+        .popup-button {
+            background: #004d99;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .popup-button:hover {
+            background: #003366;
+        }
+
+        /* Section Background Colors */
+        .project-lead {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .backend-team {
+            background: #f8d7da;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .frontend-team {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: #003366;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            Decentralized Social Media for Professionals
+        </header>
+        <div class="project-info">
+            <p><strong>Frontend Help Backup:</strong> Tumelo</p>
+            <p><strong>Date:</strong> August 6, 2024</p>
+        </div>
+
+        <!-- Project Lead Section -->
+        <div class="team-section project-lead">
+            <div class="team-role">Project Lead</div>
+            <div class="team-cards">
+                <div class="team-card lead">
+                    <div class="name">SHIBAM</div>
+                    <div class="details">Project Lead</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Structure -->
+        <div class="team-section">
+            <button class="popup-button" onclick="showPopup()">Team Lead & Role Leads</button>
+            <div class="team-cards">
+                <div class="team-card lead">
+                    <div class="name">AKSHAT</div>
+                    <div class="details">Team Lead & Backend Lead</div>
+                </div>
+                <div class="team-card frontend">
+                    <div class="name">RAHUL</div>
+                    <div class="details">Frontend Lead</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-section backend-team">
+            <div class="team-role">Backend Team</div>
+            <div class="team-cards">
+                <div class="team-card backend">
+                    <div class="name">SHIBAM</div>
+                    <div class="details">Backend Developer</div>
+                </div>
+                <div class="team-card backend">
+                    <div class="name">OMM</div>
+                    <div class="details">Backend Developer</div>
+                </div>
+                <div class="team-card backend">
+                    <div class="name">ARYAN</div>
+                    <div class="details">Backend Developer</div>
+                </div>
+                <div class="team-card backend">
+                    <div class="name">RAHUL S</div>
+                    <div class="details">Backend Developer</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-section frontend-team">
+            <div class="team-role">Frontend Team</div>
+            <div class="team-cards">
+                <div class="team-card frontend">
+                    <div class="name">CHIRANJEEB</div>
+                    <div class="details">Frontend Developer</div>
+                </div>
+                <div class="team-card frontend">
+                    <div class="name">ASHISH</div>
+                    <div class="details">Frontend Developer</div>
+                </div>
+                <div class="team-card frontend">
+                    <div class="name">KUNAL</div>
+                    <div class="details">Frontend Developer</div>
+                </div>
+                <div class="team-card frontend">
+                    <div class="name">SOUNAVA</div>
+                    <div class="details">Frontend Developer</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popup for Project Overview and Terms & Conditions -->
+        <div id="popup-task" class="popup">
+            <div class="popup-content">
+                <h2>August Task</h2>
+                <p>We will enhance UI/UX, develop key features, and integrate Web 3 technologies. Daily meetings will ensure progress and address issues.</p>
+                <p>To learn more, click <a href="APPONEX INDIA.pdf" target="_blank">here</a> to view the detailed document.</p>
+                <button class="popup-close" onclick="hidePopup()">Close</button>
+            </div>
+        </div>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <h2>Project Overview</h2>
+                <p>This project aims to create a decentralized social media platform tailored for professionals, integrating advanced Web3 features to enhance user interaction and data security.</p>
+                <p>To learn more, click <a href="Project Overview.pdf" target="_blank">here</a> to view the detailed document.</p>
+                <button class="popup-close" onclick="hidePopup()">Close</button>
+            </div>
+        </div>
+
+        
+        
+        <div id="popup-terms" class="popup">
+            <div class="popup-content">
+                <h2>Terms and Conditions</h2>
+                <p>Please review our terms and conditions carefully to understand your rights and obligations while using our platform.</p>
+                <p>To read the full document, click <a href="Confidentiality and Terms.pdf" target="_blank">here</a>.</p>
+                <button class="popup-close" onclick="hidePopup()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a href="#" onclick="showPopupTask()">August Task</a>
+        <a href="#" onclick="showPopup()">Project Overview</a>
+        <a href="#" onclick="showPopupTerms()">Terms and Conditions</a>
+        <p>© 2024 AppoNex India. Made with Love.</p>
+    </footer>
+
+    <script>
+        function showPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function showPopupTask() {
+            document.getElementById('popup-task').style.display = 'flex';
+        }
+
+        function showPopupTerms() {
+            document.getElementById('popup-terms').style.display = 'flex';
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('popup-task').style.display = 'none';
+            document.getElementById('popup-terms').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
